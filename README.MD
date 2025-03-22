@@ -5,6 +5,12 @@ With `@Agent` and `@Action` annotations, any existing Spring Boot service become
 
 ---
 
+## 📦 **Prerequisites**
+Tools4AI is here [Tools4AI](https://github.com/vishalmysore/Tools4AI)  
+Server is here [Neurocaster-Server](https://github.com/vishalmysore/neurocaster-server)   
+Client is here [Neurocaster-Client](https://github.com/vishalmysore/neurocaster-client)
+
+
 ## 🛠️ **Features**
 - 🔥 **Spring Boot + MIP Integration:** Convert existing methods into JSON-RPC tools.
 - ⚙️ **Annotations:**
