@@ -15,12 +15,12 @@ public class NeuroCasterChatEndpoint extends AbstractWebSocketHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("New connection: " + session.getId());
+            log.info("New connection: " + session.getId());
     }
 
     @OnMessage
     public String onMessage(String message, Session session) {
-        System.out.println("Received message: " + message);
+        log.info("Received message: " + message);
 
         // Process the input JSON message
         try {
@@ -75,11 +75,11 @@ public class NeuroCasterChatEndpoint extends AbstractWebSocketHandler {
     }
     @OnClose
     public void onClose(Session session) {
-        System.out.println("Connection closed: " + session.getId());
+        log.info("Connection closed: " + session.getId());
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        System.out.println("Error in connection: " + throwable.getMessage());
+        log.info("Error in connection: " + throwable.getMessage());
     }
 }

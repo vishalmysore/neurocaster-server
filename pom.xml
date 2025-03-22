@@ -11,7 +11,7 @@
     </parent>
     <groupId>io.github.vishalmysore</groupId>
     <artifactId>neurocaster-server</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>Neurocaster Server</name>
     <description>
         Neurocaster Server is based on Model Integration Protocol , A protocol designed for seamless integration of LLM models with java based applications and tools
@@ -34,9 +34,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/vishalmysore/Tools4AI.git</connection>
-        <developerConnection>scm:git:ssh://github.com:vishalmysore/Tools4AI.git</developerConnection>
-        <url>http://github.com/vishalmysore/Tools4AI/tree/master</url>
+        <connection>scm:git:git://github.com/vishalmysore/neurocaster-server.git</connection>
+        <developerConnection>scm:git:ssh://github.com:vishalmysore/neurocaster-server.git</developerConnection>
+        <url>http://github.com/vishalmysore/neurocaster-server/tree/master</url>
     </scm>
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
@@ -263,11 +263,13 @@
 
     <build>
         <plugins>
+
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <layout>ZIP</layout> <!-- This configures PropertiesLauncher -->
+                    <classifier>exec</classifier>
                 </configuration>
             </plugin>
             <plugin>
@@ -283,6 +285,8 @@
                 </configuration>
 
             </plugin>
+
+
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
@@ -293,17 +297,20 @@
                     <tokenAuth>true</tokenAuth>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <artifactId>maven-gpg-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>sign</goal>
                         </goals>
+                        <configuration>
+                            <keyname>${mykey}</keyname>
+                            <passphraseServerId>myid</passphraseServerId>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -316,6 +323,19 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>

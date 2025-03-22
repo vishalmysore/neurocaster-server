@@ -1,30 +1,82 @@
-# Model Integration Protocol : Neurocaster
+# 🚀 **Model Integration Protocol (MIP) with Spring Boot**
 
-This project is a Model Integration Protocol (MIP) implementation, similar to the Model Context Protocol (MCP). It dynamically triggers actions or tools, which can be written in Java, HTTP REST calls, or shell scripts. All existing calls can be converted to tools.
+This project demonstrates how to **integrate Spring Boot methods into LLMs** using **Model Integration Protocol (MIP)** by exposing them as **JSON-RPC tools**.  
+With `@Agent` and `@Action` annotations, any existing Spring Boot service becomes an **AI-triggerable tool**.
+
+---
+
+## 🛠️ **Features**
+- 🔥 **Spring Boot + MIP Integration:** Convert existing methods into JSON-RPC tools.
+- ⚙️ **Annotations:**
+   - `@Agent`: Declares a service as an AI-invocable agent.
+   - `@Action`: Exposes a method as an actionable tool.
+   - `@Prompt`: Defines custom prompts, like date formats, for better LLM interpretation.
+- ⚡ **Tools4AI Execution:** LLMs use **Tools4AI** to trigger the exposed services dynamically.
+
+---
+
+## 🔥 **Example Services**
+
+### 🛠️ **Customer Support Service**
+```java
+@Service
+@Agent(groupName = "customer support", groupDescription = "Actions related to customer support")
+public class ComplexActionService {
+
+    public static int COUNTER = 0;
+
+    public ComplexActionService() {
+        COUNTER++;
+    }
+
+    @Action(description = "Customer has a problem, create a ticket for them")
+    public String computerRepair(Customer customer) {
+        return customer.toString();
+    }
+}
+```
+
+```
+{
+    "methodName": "computerRepair",
+    "parameters": [
+        {
+            "name": "customer",
+            "type": "Customer",
+            "fieldValue": {
+                "name": "Alice",
+                "email": "alice@example.com",
+                "issue": "Laptop not booting"
+            }
+        }
+    ],
+    "returnType": "String"
+}
 
 
+```
+### ⚙️ Tools4AI Integration
+To integrate with LLMs using Tools4AI, the services are exposed as JSON-RPC tools.
+When the LLM receives a query, it:
 
-## Tools
+Selects the most relevant tool based on the context.
 
-Look at Tools4AI project for the tools.
+Generates the JSON-RPC request.
 
-## Usage
+Invokes the Spring Boot service dynamically.
 
-To use the tools, you can trigger them dynamically through the MIP. The tools can be implemented in Java, HTTP REST calls, or shell scripts. All existing calls can be converted to tools.
+Returns the result back to the LLM.
 
-## Running the Project
+### 🔥 Customization
+You can:
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Build the project using Maven:
-   ```sh
-   mvn clean install
-   ```
-4. Run the Spring Boot application:
-   ```sh
-   mvn spring-boot:run
-   ```
+Add more services with @Agent and @Action annotations.
 
-## License
+Use @Prompt to specify custom prompts for date formatting or other field interpretation.
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+Scale by adding additional JSON-RPC tools, making your Spring Boot app LLM-compatible.
+
+### 🚀 Contributing
+Fork the repo and submit a pull request.
+
+Add more services, improve error handling, or optimize the JSON-RPC layer.
