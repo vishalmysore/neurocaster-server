@@ -12,8 +12,51 @@ With `@Agent` and `@Action` annotations, any existing Spring Boot service become
    - `@Action`: Exposes a method as an actionable tool.
    - `@Prompt`: Defines custom prompts, like date formats, for better LLM interpretation.
 - ⚡ **Tools4AI Execution:** LLMs use **Tools4AI** to trigger the exposed services dynamically.
+- 🗨️ **WebSocket Integration:** All Spring services annotated with `@Agent` and `@Action` can now be used for chat interactions with LLMs.
 
 ---
+
+## ⚙️ WebSocket Configuration
+To integrate your Spring Boot application for chat interactions, configure WebSocket and the dependency as follows:
+
+🧩 WebSocket Configuration
+Add the following configuration class to enable WebSocket support:
+
+
+```  
+@Configuration
+@EnableWebSocket
+public class NeuroCasterWebSocketConfig implements WebSocketConfigurer {
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketHandler(), "/chat")
+                .addInterceptors(new HttpSessionHandshakeInterceptor())
+                .setAllowedOrigins("*");  // Allow all origins or specific ones
+    }
+
+    @Bean
+    public WebSocketHandler webSocketHandler() {
+        return new NeuroCasterChatEndpoint(); // Use the ChatEndpoint class as WebSocketHandler
+    }
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+}
+
+```
+📦 Add Dependency
+Add the following dependency to your pom.xml:
+
+```  
+<dependency>
+    <groupId>io.github.vishalmysore</groupId>
+    <artifactId>neurocaster-server</artifactId>
+    <version>0.0.1</version>
+</dependency>
+
+```
 
 ## 🔥 **Example Services**
 
