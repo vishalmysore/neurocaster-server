@@ -5,6 +5,25 @@ With `@Agent` and `@Action` annotations, any existing Spring Boot service become
 
 ---
 
+### Screenshots
+Connect to a server and start chatting with the AI:  
+![Connect](connect.png)
+
+View all the available tools and interact with them: 
+![Chat](client2.png)
+
+Click on tool to see the details   
+![Chat](client3.png)
+
+Click on the Send button to do normal chat with AI 
+![Chat](client4.png)
+
+Click on Tool button to get the closed matching tool for your prompt 
+![Chat](client5.png)
+
+Execute the tool and get the result 
+![Chat](client6.png)
+
 ## 📦 **Prerequisites**
 Tools4AI is here [Tools4AI](https://github.com/vishalmysore/Tools4AI)  
 Server is here [Neurocaster-Server](https://github.com/vishalmysore/neurocaster-server)   
