@@ -18,7 +18,7 @@
         Tools4Ai is Java Agentic AI Framework. Connect Various Tools directly into AI LLM. This is 100% Java implementation of Large Action Model or LLM Agent. It can work with Gemini, OpenAI , LocalAI or any locally hosted LLM
         Integrate AI with enterprise tools or external tools, converting natural language prompts into actions. Actions could be Java Methods, Classes, Http endpoints, Shell scripts , Swagger url or more.
     </description>
-    <url>https://github.com/vishalmysore/Tools4AI</url>
+    <url>https://github.com/vishalmysore/neurocaster-server</url>
     <licenses>
         <license>
             <name>MIT License</name>
@@ -265,13 +265,6 @@
         <plugins>
 
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <classifier>exec</classifier>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

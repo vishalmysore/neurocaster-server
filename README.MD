@@ -64,6 +64,9 @@ Add the following dependency to your pom.xml:
 
 ```
 
+Then Connect to http://localhost:8081/actuator/tools4ai-tools using the neurocaster-client you can start chatting with the AI or you can use the tools
+
+
 ## 🔥 **Example Services**
 
 ### 🛠️ **Customer Support Service**
