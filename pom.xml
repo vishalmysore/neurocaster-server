@@ -11,7 +11,7 @@
     </parent>
     <groupId>io.github.vishalmysore</groupId>
     <artifactId>neurocaster-server</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>Neurocaster Server</name>
     <description>
         Neurocaster Server is based on Model Integration Protocol , A protocol designed for seamless integration of LLM models with java based applications and tools

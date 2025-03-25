@@ -2,6 +2,7 @@ package io.github.vishalmysore;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.t4a.JsonUtils;
 import com.t4a.predict.Tools4AI;
 import com.t4a.processor.OpenAiActionProcessor;
 import jakarta.websocket.*;
@@ -17,7 +18,7 @@ public class NeuroCasterChatEndpoint extends AbstractWebSocketHandler {
     public void onOpen(Session session) {
             log.info("New connection: " + session.getId());
     }
-
+    private JsonUtils utils = new JsonUtils();
     @OnMessage
     public String onMessage(String message, Session session) {
         log.info("Received message: " + message);
@@ -46,6 +47,9 @@ public class NeuroCasterChatEndpoint extends AbstractWebSocketHandler {
                 processor.processSingleAction(input.getActualMessage(), chatHumanInLoop, explainDecision);
                 methodName = chatHumanInLoop.getMethodName();
                 paramString = chatHumanInLoop.getParamsString();
+                if(paramString.contains("```json")) {
+                    paramString = utils.extractJson(paramString);
+                }
             }
 
             // Create a JSON response
